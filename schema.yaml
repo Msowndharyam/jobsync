@@ -1,0 +1,1209 @@
+openapi: 3.0.3
+info:
+  title: JobSync API
+  version: 1.0.0
+  description: Documentation of API endpoints of JobSync
+paths:
+  /api/auth/signin/:
+    post:
+      operationId: auth_signin_create
+      tags:
+      - auth
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/auth/signup/:
+    post:
+      operationId: auth_signup_create
+      tags:
+      - auth
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/jobs/listings/:
+    get:
+      operationId: jobs_listings_list
+      tags:
+      - jobs
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobListing'
+          description: ''
+    post:
+      operationId: jobs_listings_create
+      tags:
+      - jobs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobListing'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/JobListing'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/JobListing'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListing'
+          description: ''
+  /api/jobs/listings/{id}/:
+    get:
+      operationId: jobs_listings_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this job listing.
+        required: true
+      tags:
+      - jobs
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListing'
+          description: ''
+    put:
+      operationId: jobs_listings_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this job listing.
+        required: true
+      tags:
+      - jobs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobListing'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/JobListing'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/JobListing'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListing'
+          description: ''
+    patch:
+      operationId: jobs_listings_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this job listing.
+        required: true
+      tags:
+      - jobs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedJobListing'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedJobListing'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedJobListing'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListing'
+          description: ''
+    delete:
+      operationId: jobs_listings_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this job listing.
+        required: true
+      tags:
+      - jobs
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/jobs/listings/dashboard/:
+    get:
+      operationId: jobs_listings_dashboard_retrieve
+      tags:
+      - jobs
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListing'
+          description: ''
+  /api/jobs/listings/employer_insights/:
+    get:
+      operationId: jobs_listings_employer_insights_retrieve
+      tags:
+      - jobs
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListing'
+          description: ''
+  /api/jobs/recommendations/:
+    get:
+      operationId: jobs_recommendations_retrieve
+      tags:
+      - jobs
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: jobs_recommendations_create
+      tags:
+      - jobs
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          description: No response body
+  /api/jobs/recommendations/{id}/:
+    get:
+      operationId: jobs_recommendations_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - jobs
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: jobs_recommendations_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - jobs
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    patch:
+      operationId: jobs_recommendations_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - jobs
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: jobs_recommendations_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - jobs
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/jobs/recommendations/recommendations/:
+    get:
+      operationId: jobs_recommendations_recommendations_retrieve
+      tags:
+      - jobs
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/recommendations/:
+    get:
+      operationId: recommendations_retrieve
+      tags:
+      - recommendations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: recommendations_create
+      tags:
+      - recommendations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          description: No response body
+  /api/recommendations/{id}/:
+    get:
+      operationId: recommendations_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - recommendations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: recommendations_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - recommendations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    patch:
+      operationId: recommendations_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - recommendations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: recommendations_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - recommendations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/recommendations/recommendations/:
+    get:
+      operationId: recommendations_recommendations_retrieve
+      tags:
+      - recommendations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/schema/:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - ug
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/token/:
+    post:
+      operationId: token_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      tags:
+      - token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenObtainPair'
+          description: ''
+  /api/token/refresh/:
+    post:
+      operationId: token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /api/users/:
+    get:
+      operationId: users_list
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+          description: ''
+    post:
+      operationId: users_create
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /api/users/{id}/:
+    get:
+      operationId: users_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: users_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    patch:
+      operationId: users_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    delete:
+      operationId: users_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/users/me/:
+    get:
+      operationId: users_me_retrieve
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /users/listings/:
+    get:
+      operationId: users_listings_list
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobListing'
+          description: ''
+    post:
+      operationId: users_listings_create
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobListing'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/JobListing'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/JobListing'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListing'
+          description: ''
+  /users/listings/{id}/:
+    get:
+      operationId: users_listings_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this job listing.
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListing'
+          description: ''
+    put:
+      operationId: users_listings_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this job listing.
+        required: true
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobListing'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/JobListing'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/JobListing'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListing'
+          description: ''
+    patch:
+      operationId: users_listings_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this job listing.
+        required: true
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedJobListing'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedJobListing'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedJobListing'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListing'
+          description: ''
+    delete:
+      operationId: users_listings_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this job listing.
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /users/listings/dashboard/:
+    get:
+      operationId: users_listings_dashboard_retrieve
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListing'
+          description: ''
+  /users/listings/employer_insights/:
+    get:
+      operationId: users_listings_employer_insights_retrieve
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListing'
+          description: ''\
+components:
+  schemas:
+    BlankEnum:
+      enum:
+      - ''
+    JobListing:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        required_skills:
+          type: array
+          items:
+            $ref: '#/components/schemas/Skill'
+        title:
+          type: string
+          maxLength: 255
+        company:
+          type: string
+          maxLength: 255
+        location:
+          type: string
+          nullable: true
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+        external_url:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 200
+        posted_at:
+          type: string
+          format: date-time
+          readOnly: true
+        expires_at:
+          type: string
+          format: date-time
+          nullable: true
+        employer:
+          type: integer
+      required:
+      - company
+      - employer
+      - id
+      - posted_at
+      - required_skills
+      - title
+    NullEnum:
+      enum:
+      - null
+    PatchedJobListing:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        required_skills:
+          type: array
+          items:
+            $ref: '#/components/schemas/Skill'
+        title:
+          type: string
+          maxLength: 255
+        company:
+          type: string
+          maxLength: 255
+        location:
+          type: string
+          nullable: true
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+        external_url:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 200
+        posted_at:
+          type: string
+          format: date-time
+          readOnly: true
+        expires_at:
+          type: string
+          format: date-time
+          nullable: true
+        employer:
+          type: integer
+    PatchedUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          nullable: true
+          title: Name of User
+          maxLength: 255
+        username:
+          type: string
+          nullable: true
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 128
+        role:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/RoleEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        job_title:
+          type: string
+          nullable: true
+          maxLength: 150
+    RoleEnum:
+      enum:
+      - job_seeker
+      - recruiter
+      type: string
+      description: |-
+        * `job_seeker` - Job Seeker
+        * `recruiter` - Recruiter
+    Skill:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+      required:
+      - id
+      - name
+    TokenObtainPair:
+      type: object
+      properties:
+        email:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          readOnly: true
+      required:
+      - access
+      - email
+      - password
+      - refresh
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          writeOnly: true
+      required:
+      - access
+      - refresh
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          nullable: true
+          title: Name of User
+          maxLength: 255
+        username:
+          type: string
+          nullable: true
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 128
+        role:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/RoleEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        job_title:
+          type: string
+          nullable: true
+          maxLength: 150
+      required:
+      - email
+      - id
+      - password
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
